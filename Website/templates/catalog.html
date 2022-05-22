@@ -1,0 +1,427 @@
+<html>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+</head>
+<body>
+
+<!--Header-->
+<header class="w3-container" style="background-color: black" id = catalog>
+    <h1 class="w3-large w3-cursive" style="font-family: courier new; color:white;">User Dashboard
+        {% if userInfo.3 == 0 %}
+            <form class="formA" method="GET" action="{% url 'admin' %}">
+        {% endif %}
+        {% if userInfo.3 == 1 %}
+            <form class="formA" method="GET" action="{% url 'sponsor' %}">
+        {% endif %}
+        {% if userInfo.3 == 2 %}
+            <form class="formA" method="GET" action="{% url 'user' %}">
+        {% endif %}
+        <button class="w3-bar-item w3-button w3-left fa fa-home"
+                style="position:relative;top:-3px;left:155px;"></button>
+        </form>
+
+        {% if userInfo.3 == 2 %}
+            <a class="w3-right redCircle" style="top:15px; left:-20px; position:relative;" id = testItemCount> {{ itemCount }}  </a>
+            <button onclick="hideShow()" class="w3-right w3-bar-item w3-button fa fa-shopping-cart"
+                    style="position:relative;"></button>
+            <a class="w3-right" style="position:relative;top:5px"> {{ catalogName.org_name }} Points: {{ points }}  </a>
+        {% endif %}
+
+
+        <div class="w3-dropdown-hover w3-right" style="background-color:black">
+            <button class="w3-button fa fa-user w3-xlarge"
+                    style="color:white;background-color:black;top: -5px;position:relative"> {{ username }}</button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <form class="formA" style="top:28px;" method="GET" action="{% url 'accountInfo' %}">
+                    <button href="#" class="w3-bar-item w3-button"
+                            style="position:relative;color:white;background-color:black;">Account
+                    </button>
+                </form>
+                <form class="formA" style="top:54px;" method="orders" style="background-color:black"
+                      action="{% url 'orders' %}">
+                    <button type="submit" class="w3-bar-item w3-button"
+                            style="position:relative;color:white;background-color:black;margin-bottom:-18px">Orders
+                    </button>
+                </form>
+                {% if userInfo.3 == 2 %}
+                <form class="formA" style="top:82px;" method="history" style="background-color:black"
+                    action="{% url 'history' %}">
+                    <button type="submit" class="w3-bar-item w3-button"
+                      style="position:relative;color:white;background-color:black;margin-bottom:28px">History
+                    </button>
+                </form>
+                {%endif%}
+                <form class="formA" style="top:82px;" method="logout" style="background-color:black"
+                      action="{% url 'user_login' %}">
+                    <button type="submit" class="w3-bar-item w3-button" id="test-logout"
+                            style="position:relative;color:white;background-color:black;margin-bottom:-18px">Log Out
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+
+        {% if userInfo.3 == 0 %}
+            <div class="w3-dropdown-hover w3-right" style="background-color:black">
+                <button class="w3-button w3-bar-item"
+                        style="color:white;background-color:black;top: -5px;position:relative">Change View
+                </button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <form class="formA" style="top:28px;" method="GET" action="{% url 'sponsor' %}">
+                        <button href="#" class="w3-bar-item w3-button"
+                                style="position:relative;color:white;background-color:black;">Sponsor
+                        </button>
+                    </form>
+                    <form class="formA" style="top:54px;" method="GET" action="{% url 'user' %}">
+                        <button type="submit" class="w3-bar-item w3-button"
+                                style="position:relative;color:white;background-color:black;margin-bottom:-18px">Driver
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!--closed this form-->
+            <form class="formA" method="GET" action="{% url 'catalog' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Catalog
+                </button>
+            </form>
+            <button class="w3-right w3-bar-item w3-button"
+                    style="color:white;background-color:black;top: -5px;position:relative">Drivers
+            </button>
+            <button class="w3-right w3-bar-item w3-button"
+                    style="color:white;background-color:black;top: -5px;position:relative">Sponsors
+            </button>
+        {% endif %}
+
+
+
+        {% if userInfo.3 == 1 %}
+            <div class="w3-dropdown-hover w3-right" style="background-color:black">
+                <button class="w3-button w3-bar-item"
+                        style="color:white;background-color:black;top: -5px;position:relative">Change View
+                </button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <form class="formA" style="top:28px;" method="GET" action="{% url 'sponsor' %}">
+                        <button href="#" class="w3-bar-item w3-button"
+                                style="position:relative;color:white;background-color:black;">Sponsor
+                        </button>
+                    </form>
+                    <form class="formA" style="top:54px;" method="GET" action="{% url 'user' %}">
+                        <button type="submit" class="w3-bar-item w3-button"
+                                style="position:relative;color:white;background-color:black;margin-bottom:-18px">Driver
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <form class="formA" method="GET" action="{% url 'catalog' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Catalog
+                </button>
+            </form>
+            <form class="formA" method="get" action="{% url 'viewApplications' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Drivers
+                </button>
+            </form>
+        {% endif %}
+
+
+
+        {% if userInfo.3 == 2 %}
+            <!--closed this form-->
+            <form class="formA" method="GET" action="{% url 'catalog' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Catalog
+                </button>
+            </form>
+            <form class="formA" method="get" action="{% url 'selectSponsor' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Sponsor
+                </button>
+            </form>
+        {% endif %}
+    </h1>
+</header>
+
+<!--This div goes first. Hides/Shows the user's shopping cart ooo-->
+{% if cartOpen == 1 %}
+    <div id="Cart" class="w3-right cart" style="display:block">
+{% else %}
+    <div id="Cart" class="w3-right cart" style="display:none">
+{% endif %}
+<h3 class="w3-center">Cart</h3>
+{% for item in items %}
+    <div style="border-style:solid;border-width:1px;border-color:white">
+        <img src="{{ item.image }}" style="width:20%;height:20%;display:inline-block"></img>
+        <p style="width:50%; top:20px;display:inline-block;position:relative;">{{ item.items }}<br>
+            Price: {{ item.price }}<br>
+            Catalog: {{ item.catalog_id }}
+        </p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="row" value="{{ item.row_id }}"
+                   style="height:0%;visibility:hidden;display:none;position:absolute;width:0%"/>
+            <input type="text" name="org" value="{{ org }}"
+                   style="height:0%;visibility:hidden;width:0%;display:none;position:absolute;"/>
+            <button type="submit" name="b1" value="cartTrash" class="w3-right fa fa-trash w3-xlarge"
+                    style="position:relative;display:inline-block;width:10%;left:-10px;top:-55px;"></button>
+        </form>
+        <br>
+    </div>
+{% endfor %}
+<form class="w3-center" action="" method="POST">
+    {% csrf_token %}
+    <input type="text" name="org" value="{{ org }}"
+           style="height:0%;visibility:hidden;width:0%;display:none;position:absolute;"/>
+    <button type='submit' name="b1" value="clear">Remove All</button>
+</form>
+<div style="border-style:solid;border-width:1px;border-color:white">
+    <h3 class="w3-center">Checkout</h3>
+    <div class="w3-center">
+        <p>Subtotals</p>
+        {% for value in subtotal %}
+            {{ value }}<br>
+        {% endfor %}
+        <p>Balance(s)</p>
+        {% for value in scores %}
+            {{ value }}<br>
+        {% endfor %}
+    </div>
+    <br>
+    <form class="w3-center" action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="Address" placeholder="Address"/><br>
+        <input type="text" name="ZipCode" placeholder="Zip Code"/>
+        <input type="text" name="State" placeholder="State"/>
+        <input type="text" name="org" value="{{ org }}"
+               style="height:0%;visibility:hidden;width:0%;display:none;position:absolute;"/>
+        <button class="w3-center" action="submit" name="b1" value="checkOut">Place Order</button>
+    </form>
+</div></div>
+
+
+<!--Admin gets access to all of the catalogs-->
+{% if userInfo.3 == 0 %}
+    <h3 class="w3-center"> Select the catalog you want to view </h3>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row w3-center">
+            <div class="action w3-center">
+                <select name="spons_id">
+                    {% for entry in sponsors %}
+                        <option value={{ entry.org_id }}>{{ entry.org_name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Accept" id = testAccept>
+            </div>
+            
+        </div>
+    </form>
+    <br><br><br>
+{% endif %}
+
+<!--User only gets theirs-->
+{% if userInfo.3 == 2%}
+<h3 class="w3-center"> Select the catalog you want to view </h3>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="row w3-center">
+        <div class="action w3-center">
+            <select name="spons_id">
+                {% for entry in organizations %}
+                    <option value={{ entry.org_id }}>{{ entry.org_name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Accept" id = testAccept>
+        </div>
+    </div>
+</form>
+<br><br><br>
+{% endif %}
+
+<br><br>
+<div class="row text w3-center" id = testCatalogDisplay>Catalog for: {{ catalogName.org_name }} </div>
+<br>
+
+<!--Catlog goes here. For loop through and create items. EZPZ-->
+{% for message in messages %}
+
+    <div class="alert alert-success">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% if userInfo.3 == 2 %}
+    {% for item in catalog %}
+        <div class="item">
+            <p style="white-space: nowrap; overflow: hidden;display: block; text-overflow: ellipsis;">{{ item.items }}</p>
+            <img style="width:60%; height:60%" src="{{ item.image }}"></img>
+            <p>{{ item.description }}</p>
+            <p>Price: {{ item.price }}</p>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="org" value="{{ org }}" style="height:0%;visibility:hidden"/>
+                <input type="text" name="ROW" value="{{ item.row_id }}" style="height:0%;visibility:hidden"/>
+                <button name="b1" value="buy" id = testAddToCart action="submit" style="position:relative; top:-20px;">Add to Cart</button>
+            </form>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if userInfo.3 == 1 or userInfo.3 == 0 %}
+<!--FIXME FIXMEFIXMEFIXMEFIXMEFIXMEFIXMEFIXMEFIXMEFIXMEFIXMEFIXME this where the ratio change goes-->
+    <form action="{% url 'pointsRatio' %}?oid={{ org }}" method="POST">
+        {% csrf_token %}
+        <div class="ratio">
+            <header>To change points conversion ratio, enter number of points equal to $1, then press submit. WARNING: This will delete current catalog items.</header>
+            <input type="pr" name="pr" placeholder="Points Ratio" required=""/>
+            <button>Submit</button>
+        </div>
+    </form>
+
+    {% for item in catalog %}
+        <div class="item">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="ITEM" placeholder="Item Name" value="{{ item.items }}"/>
+                <img style="width:60%; height:60%" src="{{ item.image }}"></img>
+                <input type="text" name="DESC" placeholder="Item Description" value="{{ item.image }}"/>
+                <input type="text" name="URL" placeholder="Image URL" value="{{ item.description }}"/>
+                <input type="text" name="PRICE" placeholder="Item Price" value="{{ item.price }}"/>
+                <input type="text" name="CAT" value="{{ catalogName.catalog_id }}" style="visibility:hidden"/>
+                <input type="text" name="org" value="{{ org }}" style="height:0%;visibility:hidden"/>
+                <input type="text" name="ROW" value="{{ item.row_id }}" style="height:0%;visibility:hidden"/>
+                <button name="b1" value="up" action="submit">Update</button>
+                <button name="b1" value="del" action="submit">Delete</button>
+            </form>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!--If the user is sponsor or admin they can edit the catalog-->
+{% if userInfo.3 == 1 or userInfo.3 == 0 %}
+    <div class="item">
+        <p>Add a new item</p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <br><br>
+            <input type="text" name="ITEM" placeholder="Item Name"/><br><br>
+            <input type="text" name="DESC" placeholder="Item Description"/><br><br>
+            <input type="text" name="URL" placeholder="Image URL"/><br><br>
+            <input type="text" name="PRICE" placeholder="Item Price"/>
+            <input type="text" name="CAT" value="{{ catalogName.catalog_id }}" style="visibility:hidden"/><br><br>
+            <input type="text" name="org" value="{{ org }}" style="height:0%;visibility:hidden"/>
+            <button name="b1" value="add" action="submit">Add</button>
+        </form>
+    </div>
+{% endif %}
+
+<style>
+
+    body {
+        background-color: #010044;
+        color: white;
+    }
+
+    w3-button {
+        background-color: black;
+        color: white;
+    }
+
+    .action {
+        border-style: solid;
+        border-width: 2px;
+        border-color: white;
+        float: left;
+        width: 20%;
+        position: relative;
+        text-align: center;
+        background-color: #0f99ac;
+        font-weight: bold;
+        color: black;
+        left: 40%;
+        top: 5px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .action:hover {
+        cursor: cursor;
+    }
+
+    .item {
+        border-style: solid;
+        border-width: 2px;
+        border-color: white;
+        float: left;
+        width: 25%;
+        height: 450px;
+        position: relative;
+        text-align: center;
+        background-color: #0f99ac;
+        font-weight: bold;
+        color: black;
+        left: 0%;
+        top: 5px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .formA {
+        position: relative;
+        margin-bottom: -18px;
+        margin-top: -28px;
+    }
+
+    input {
+        width: 90%;
+    }
+
+    .redCircle {
+        position: relative;
+        height: 20px;
+        width: 20px;
+        font-size: 15px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: white;
+        background-color: red;
+        border-radius: 50%;
+        text-align: center;
+        color: white;
+    }
+
+    .cart {
+        position: absolute;
+        width: 20%;
+        left: 80%;
+        border-style: solid;
+        border-color: white;
+        border-width: 2px;
+        background-color: blue;
+        z-index: 50;
+    }
+    .ratio {
+        width: 20%;
+        margin-left: 40%;
+    }
+
+</style>
+
+<script>
+    function hideShow() {
+        var x = document.getElementById("Cart");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+</html>

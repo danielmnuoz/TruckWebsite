@@ -1,0 +1,257 @@
+<html>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+</head>
+<body>
+
+<!--Header-->
+<header class="w3-container" style="background-color: black">
+    <h1 class="w3-large w3-cursive" style="font-family: courier new; color:white;">User Dashboard
+        {% if userInfo.3 == 0 %}
+            <form class="formA" method="GET" action="{% url 'admin' %}">
+        {% endif %}
+        {% if userInfo.3 == 1 %}
+            <form class="formA" method="GET" action="{% url 'sponsor' %}">
+        {% endif %}
+        {% if userInfo.3 == 2 %}
+            <form class="formA" method="GET" action="{% url 'user' %}">
+        {% endif %}
+        <button class="w3-bar-item w3-button w3-left fa fa-home"
+                style="position:relative;top:-3px;left:155px;"></button>
+        </form>
+
+
+        <div class="w3-dropdown-hover w3-right" style="background-color:black">
+            <button class="w3-button fa fa-user w3-xlarge"
+                    style="color:white;background-color:black;top: -5px;position:relative"> {{ username }}</button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <form class="formA" style="top:28px;" method="GET" action="{% url 'accountInfo' %}">
+                    <button href="#" class="w3-bar-item w3-button"
+                            style="position:relative;color:white;background-color:black;">Account
+                    </button>
+                </form>
+                <form class="formA" style="top:54px;" method="orders" style="background-color:black"
+                      action="{% url 'orders' %}">
+                    <button type="submit" class="w3-bar-item w3-button"
+                            style="position:relative;color:white;background-color:black;margin-bottom:-18px">Orders
+                    </button>
+                </form>
+                {% if userInfo.3 == 2 %}
+                <form class="formA" style="top:82px;" method="history" style="background-color:black"
+                    action="{% url 'history' %}">
+                    <button type="submit" class="w3-bar-item w3-button"
+                      style="position:relative;color:white;background-color:black;margin-bottom:28px">History
+                    </button>
+                </form>
+                {%endif%}
+                <form class="formA" style="top:82px;" method="logout" style="background-color:black"
+                      action="{% url 'user_login' %}">
+                    <button type="submit" class="w3-bar-item w3-button" id="test-logout"
+                            style="position:relative;color:white;background-color:black;margin-bottom:-18px">Log Out
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+
+        {% if userInfo.3 == 0 %}
+            <div class="w3-dropdown-hover w3-right" style="background-color:black">
+                <button class="w3-button w3-bar-item"
+                        style="color:white;background-color:black;top: -5px;position:relative">Change View
+                </button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <form class="formA" style="top:28px;" method="GET" action="{% url 'sponsor' %}">
+                        <button href="#" class="w3-bar-item w3-button"
+                                style="position:relative;color:white;background-color:black;">Sponsor
+                        </button>
+                    </form>
+                    <form class="formA" style="top:54px;" method="GET" action="{% url 'user' %}">
+                        <button type="submit" class="w3-bar-item w3-button"
+                                style="position:relative;color:white;background-color:black;margin-bottom:-18px">Driver
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!--closed this form-->
+            <form class="formA" method="GET" action="{% url 'catalog' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Catalog
+                </button>
+            </form>
+            <button class="w3-right w3-bar-item w3-button"
+                    style="color:white;background-color:black;top: -5px;position:relative">Drivers
+            </button>
+            <button class="w3-right w3-bar-item w3-button"
+                    style="color:white;background-color:black;top: -5px;position:relative">Sponsors
+            </button>
+        {% endif %}
+
+
+
+        {% if userInfo.3 == 1 %}
+            <div class="w3-dropdown-hover w3-right" style="background-color:black">
+                <button class="w3-button w3-bar-item"
+                        style="color:white;background-color:black;top: -5px;position:relative">Change View
+                </button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <form class="formA" style="top:28px;" method="GET" action="{% url 'sponsor' %}">
+                        <button href="#" class="w3-bar-item w3-button"
+                                style="position:relative;color:white;background-color:black;">Sponsor
+                        </button>
+                    </form>
+                    <form class="formA" style="top:54px;" method="GET" action="{% url 'user' %}">
+                        <button type="submit" class="w3-bar-item w3-button"
+                                style="position:relative;color:white;background-color:black;margin-bottom:-18px">Driver
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <form class="formA" method="GET" action="{% url 'catalog' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Catalog
+                </button>
+            </form>
+            <form class="formA" method="get" action="{% url 'viewApplications' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Drivers
+                </button>
+            </form>
+        {% endif %}
+
+
+
+        {% if userInfo.3 == 2 %}
+            <!--closed this form-->
+            <form class="formA" method="GET" action="{% url 'catalog' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Catalog
+                </button>
+            </form>
+            <form class="formA" method="get" action="{% url 'selectSponsor' %}">
+                <button class="w3-right w3-bar-item w3-button"
+                        style="color:white;background-color:black;top: -5px;position:relative">Sponsor
+                </button>
+            </form>
+        {% endif %}
+    </h1>
+</header>
+
+
+{% if userInfo.3 == 2 %}
+    <body>
+    <div class="w3-center" id = orders>
+        <p>
+        <h3 margin> Your Point History </h3></p>
+    </body>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center row ">
+            <div class="col-md-10">
+                <div class="rounded">
+                    <div class="table-responsive table-bordered">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Organization ID</th>
+                                <th>Point Change</th>
+                                <th>New Balance</th>
+                                <th>Reason</th>
+                                <th>Date</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-body">
+                            {% for h in hist %}
+                                <tr class="cell-1">
+
+                                <td>{{ h.org_id }}</td>
+                                <td>{{ h.change }}</td>
+                                <td>{{ h.newbalance }}</td>
+                                <td>{{ h.reason }}</td>
+                                <td>{{ h.date }}</td>
+                                <br>
+                            {% endfor %}
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+
+</body>
+
+<style>
+    body {
+        background-color: #010044;
+        color: white;
+    }
+
+    w3-button {
+        background-color: black;
+        color: white;
+    }
+
+    .action {
+        border-style: solid;
+        border-radius: 13px;
+        border-width: 2px;
+        border-color: white;
+        float: left;
+        width: 20%;
+        position: relative;
+        text-align: center;
+        background-color: #0f99ac;
+        font-weight: bold;
+        color: black;
+        left: 2.5%;
+        margin-right: 5%;
+        padding-bottom: 10px;
+        top: 200px;
+        transition: all 0.15s ease-in-out;
+    }
+
+    .action:hover {
+        cursor: pointer;
+        background-color: #0d7a88;
+    }
+
+    i {
+        font-style: normal;
+    }
+
+    .formA {
+        position: relative;
+        margin-bottom: -18px;
+        margin-top: -28px;
+    }
+
+    th {
+        padding: 10px;
+        text-align: center;
+        border: 2px solid #ddd;
+    }
+
+    td {
+        padding: 3px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .table {
+        position: relative;
+        margin: auto;
+        width: 50%;
+
+
+    }
+
+</style>
+
+
+</html>

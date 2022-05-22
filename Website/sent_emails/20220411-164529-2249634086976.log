@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: daniel@gmail.com
+Date: Mon, 11 Apr 2022 20:45:29 -0000
+Message-ID: 
+ <164970992913.50044.7089391955457588649@LAPTOP-985867P0.hitronhub.home>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/Nw/b3q6jt-65f827322191cdceb316ce4938740364/
+
+Your username, in case you’ve forgotten: danielmunoz
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
